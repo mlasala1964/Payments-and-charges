@@ -1,19 +1,19 @@
-WITH
-charge_segments AS (
+WITH 
+payment_segments AS (
     SELECT
-        customer_id,
-        scheduled_payment_date  AS charge_date,
-        scheduled_total_payment AS segment_size,
-        SUM(scheduled_total_payment) OVER (PARTITION BY customer_id ORDER BY scheduled_payment_date, scheduled_total_payment ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW ) AS upper_extreme,
+        customer_id, 
+        payment_date,
+        total_payment AS segment_size,
+        SUM(total_payment) OVER (PARTITION BY customer_id ORDER BY payment_date, total_payment ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW ) AS upper_extreme,
         COALESCE(
-          SUM(scheduled_total_payment) OVER (PARTITION BY customer_id ORDER BY scheduled_payment_date, scheduled_total_payment ASC ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING)
+          SUM(total_payment) OVER (PARTITION BY customer_id ORDER BY payment_date, total_payment ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING)
                  , 0) AS lower_extreme
-    FROM `MyDataset.charges`
+    FROM `MyDataset.payments`
         )
 select customer_id
-      ,charge_date
-      ,charge_segments.segment_size
-      ,charge_segments.lower_extreme
-      ,charge_segments.upper_extreme
-from  charge_segments 
+      ,payment_date
+      ,payment_segments.segment_size
+      ,payment_segments.lower_extreme
+      ,payment_segments.upper_extreme
+from  payment_segments 
 order by customer_id, lower_extreme;
