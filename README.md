@@ -8,7 +8,8 @@ This repository contains the resources used to address the challenge of allocati
 
 - **Python implementation for Payments and charges.ipynb**: A Python notebook that implements the solution using Pandas DataFrames, without the use of SQL.
 
-The article can be found at: https://medium.com/@....
+The article can be found at: https://medium.com/@mlasala1964/how-to-match-payments-and-charges-in-sql-1554abf1f302
+
 
 
 
