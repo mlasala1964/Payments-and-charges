@@ -6,7 +6,7 @@ This repository contains the resources used to address the challenge of allocati
 
 - **SQL implementation for Payments and charges.ipynb**: A Python notebook that utilizes an SQLite3 connection to load data and execute the solution's SQL queries against an in-memory database.
 
-- **Pandas implementation for Payments and charges.ipynb**: A Python notebook that implements the solution using Pandas DataFrames, without the use of SQL.
+- **Python implementation for Payments and charges.ipynb**: A Python notebook that implements the solution using Pandas DataFrames, without the use of SQL.
 
 The article can be found at: https://medium.com/@....
 
